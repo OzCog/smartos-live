@@ -217,6 +217,7 @@ $(KSTAT.NODE) :	LIBS +=		-lkstat
 NODE_SUBDIR_ENV = \
 			V=1 \
 			NODE_DTRACE_PROVIDER_REQUIRE=hard \
+			PYTHON="/opt/local/bin/python2.7" \
 			CC="$(GCC)" \
 			CXX="$(GXX)" \
 			CPPFLAGS="$(NODE_CPPFLAGS)" \
@@ -286,6 +287,7 @@ BUILT_TARGETS = \
 	mkzpool \
 	nomknod.so.32 \
 	nomknod.so.64 \
+	piadm \
 	removable_disk \
 	sysevent \
 	sysinfo_mod.so \
@@ -332,6 +334,7 @@ BUILT_SMARTDC_TARGETS = \
 	smartdc/bin/sdc-factoryreset \
 	smartdc/bin/sdc-lastcomm \
 	smartdc/bin/sdc-zfs-io-throttle \
+	smartdc/bin/pkgsrc-setup \
 	smartdc/bin/qemu-exec
 
 SMARTDC_TARGETS = $(BUILT_SMARTDC_TARGETS)
@@ -390,7 +393,7 @@ install: all $(SUBDIRS)
 	mkdir -p $(DESTDIR)/usr/bin
 	cp -p $(USRBIN_TARGETS) $(DESTDIR)/usr/bin
 	mkdir -p $(DESTDIR)/usr/sbin
-	cp -p fssstat sysevent zonememstat zonemon $(DESTDIR)/usr/sbin
+	cp -p fssstat piadm sysevent zonememstat zonemon $(DESTDIR)/usr/sbin
 	cp -p $(USR_LIB_TARGETS) $(DESTDIR)/usr/lib
 	mkdir -p $(DESTDIR)/smartdc/bin
 	cp -p $(SMARTDC_TARGETS) $(DESTDIR)/smartdc/bin
